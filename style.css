@@ -1,0 +1,84 @@
+#criar {
+background-color: rgb(0, 132, 255);
+}
+
+#reiniciar {
+background-color: rgb(255, 110, 134);
+}
+
+#jogar {
+background-color: red;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 10vh;
+    background-color: lightgray;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+section#padaria {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+div {
+    width: 275px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+button {
+    border: 3px solid lightgray;
+    width: 110px;
+    height: 50px;
+    color: white;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+td {
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+th {
+    height: 50px;
+    width: 50px;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#pao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
