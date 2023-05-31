@@ -1,8 +1,29 @@
+function gerarVetorInicial() {
+    var vetor = [];
+    for(var i = 1; i<=75; i++) {
+        vetor.push(i);
+    }
+    return vetor;
+}
+
+function gerarCartelaHoje() {
+    var vetorInicial = gerarVetorInicial();
+    var cartela = [];
+
+    while(cartela.length < 24) {
+        var indice = Math.floor(Math.random()*vetorInicial.length);
+        cartela.push(vetorInicial[indice]);
+        vetorInicial.splice(indice, 1);
+    }
+    console.log(cartela);
+    return cartela;
+}
+
 function criarCartela() {
     var tabela = document.getElementById('tabela');
     tabela = document.createElement('table');
     tabela.id = 'tabela';
-    var section = document.getElementById('pao');
+    var section = document.getElementById('interface');
     section.appendChild(tabela);
     var thead = document.createElement('thead');
     tabela.appendChild(thead);
@@ -22,40 +43,42 @@ function criarCartela() {
     th5.innerText = "O";
     thead.appendChild(th5);
     
+    var cartelaGerada = gerarVetorInicial();
+
     var linha = tabela.insertRow(-1);
-    linha.insertCell(0).innerText = numero1;
-    linha.insertCell(1).innerText = 2;
-    linha.insertCell(2).innerText = 3;
-    linha.insertCell(3).innerText = 4;
-    linha.insertCell(4).innerText = 5;
+    linha.insertCell(0).innerText = 69;
+    linha.insertCell(1).innerText = 69;
+    linha.insertCell(2).innerText = 69;
+    linha.insertCell(3).innerText = 69;
+    linha.insertCell(4).innerText = 69;
 
     var linha2 = tabela.insertRow(-1);
-    linha2.insertCell(0).innerText = 1;
-    linha2.insertCell(1).innerText = 2;
-    linha2.insertCell(2).innerText = 3;
-    linha2.insertCell(3).innerText = 4;
-    linha2.insertCell(4).innerText = 5;
+    linha2.insertCell(0).innerText = 69;
+    linha2.insertCell(1).innerText = 69;
+    linha2.insertCell(2).innerText = 69;
+    linha2.insertCell(3).innerText = 69;
+    linha2.insertCell(4).innerText = 69;
 
     var linha3 = tabela.insertRow(-1);
-    linha3.insertCell(0).innerText = 1;
-    linha3.insertCell(1).innerText = 2;
+    linha3.insertCell(0).innerText = 69;
+    linha3.insertCell(1).innerText = 69;
     linha3.insertCell(2).innerText = 'X';
-    linha3.insertCell(3).innerText = 4;
-    linha3.insertCell(4).innerText = 5;
+    linha3.insertCell(3).innerText = 69;
+    linha3.insertCell(4).innerText = 69;
 
     var linha4 = tabela.insertRow(-1);
-    linha4.insertCell(0).innerText = 1;
-    linha4.insertCell(1).innerText = 2;
-    linha4.insertCell(2).innerText = 3;
-    linha4.insertCell(3).innerText = 4;
-    linha4.insertCell(4).innerText = 5;
+    linha4.insertCell(0).innerText = 69;
+    linha4.insertCell(1).innerText = 69;
+    linha4.insertCell(2).innerText = 69;
+    linha4.insertCell(3).innerText = 69;
+    linha4.insertCell(4).innerText = 69;
 
     var linha5 = tabela.insertRow(-1);
-    linha5.insertCell(0).innerText = 1;
-    linha5.insertCell(1).innerText = 2;
-    linha5.insertCell(2).innerText = 3;
-    linha5.insertCell(3).innerText = 4;
-    linha5.insertCell(4).innerText = 5;
+    linha5.insertCell(0).innerText = 69;
+    linha5.insertCell(1).innerText = 69;
+    linha5.insertCell(2).innerText = 69;
+    linha5.insertCell(3).innerText = 69;
+    linha5.insertCell(4).innerText = 69;
 
 
 }
