@@ -25,7 +25,7 @@ function criarCartela() {
         if (nomeJogador == "" || nomeJogador == null ) {
             alert('Nomes vazios não são aceitos! Digite um nome válido!');
             return;
-        } else if (nomeJogador.length > 18) {
+        } else if (nomeJogador.length > 30) {
             alert('O nome do jogador é longo demais!');
             return;
         } else {
