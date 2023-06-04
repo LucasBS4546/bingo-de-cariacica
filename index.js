@@ -107,3 +107,16 @@ function criarCartela() {
 function reiniciarJogo() {
     location.reload();
 }
+
+function jogar() {
+    var divSorteio = document.getElementById('divSorteio');
+    divSorteio = document.createElement('div');
+    divSorteio.id = 'divSorteio';
+    var numeroSorteadoH1 = document.getElementById('numeroSorteadoH1');
+    numeroSorteadoH1 = document.createElement('h1');
+    numeroSorteadoH1.id = 'numeroSorteadoH1';
+    var section = document.getElementById('sorteados');
+    section.appendChild(divSorteio);
+    divSorteio.appendChild(numeroSorteadoH1);
+}
+
