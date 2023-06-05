@@ -141,13 +141,30 @@ function sortearNumero(quantidade, min, max) {
     }
 
     numeroJogadores = jogadores.length
-
+    
     for(i=0; i<=numeroJogadores; i++){
-        if (numeroSorteado.includes(jogadores[i].cartela)) {
+        for(j=0; j<5; j++){
+            numerosCartela = jogadores[i].cartela[j]
+            
+            for(i=0; i<=numeroJogadores; i++){
 
+                for(j=0; j<5; j++){
+        
+                    numerosCartela = jogadores[i].cartela[j];
+        
+                    for(k=0; k<5; k++) {
+        
+                        if(!numeroSorteado.includes(numerosCartela[k]))
+                        console.log(numerosCartela[k]);
+        
+                    }
+                }
+        
+            }
         }
 
     }
+    
 
 
 
