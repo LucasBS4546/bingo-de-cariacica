@@ -1,5 +1,7 @@
 var jogadores = []
 
+var JogoEmAndamento = 0;
+
 function gerarNumerosAleatorios(quantidade, min, max){
 
     if(quantidade > (max - min)){ 
@@ -46,11 +48,9 @@ function criarCartela(){
 
     desenharCartela(nomeJogador, cartela);
 
-    console.log(jogadores)
 }
 
 function reiniciarJogo(){
-    jogadores = []
     location.reload();
 }
 
@@ -104,4 +104,64 @@ function desenharCartela(nomeJogador, cartela){
     divCartela.appendChild(nomeJogadorH1);
     divCartela.appendChild(tabela);
     tabela.appendChild(thead);
+}
+
+function jogoIniciado() {
+
+    var avisoJogoIniciado = document.createElement('h3');
+    avisoJogoIniciado.id = 'avisoJogoIniciado';
+
+    var section = document.querySelector("#interface2");
+
+    section.appendChild(avisoJogoIniciado);
+
+    avisoJogoIniciado.innerText = 'O jogo já foi realizado! Para realizar outro jogo, clique em "reiniciar jogo"!'
+
+    var botao = document.querySelector("#jogar");
+    botao.disabled = true;
+
+}
+
+function sortearNumero(quantidade, min, max) {
+
+    if(quantidade > (max - min)){ 
+        return;
+    }
+
+    var numeroSorteado = [];
+
+    while(numeroSorteado.length < quantidade){
+        var aleatorio = Math.floor(Math.random()*(max - min) + min);
+        
+        if(!numeroSorteado.includes(aleatorio)){
+            numeroSorteado.push(aleatorio);
+        }
+    }
+
+    numeroJogadores = jogadores.length
+
+    for(i=0; i<=numeroJogadores; i++){
+        if (numeroSorteado.includes(jogadores[i].cartela)) {
+
+        }
+
+    }
+
+
+
+
+
+}
+
+function jogar() {
+
+    if (jogadores.length < 2) {
+        alert('Deve-se ter pelo menos 2 jogadores para jogar!')
+        return
+    }
+
+    sortearNumero(74,1,75)
+
+
+    document.querySelector("#jogar").onclick = function() {jogoIniciado()};
 }
