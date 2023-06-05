@@ -144,6 +144,8 @@ function jogar() {
         section.appendChild(divSorteio);
         divSorteio.appendChild(numeroSorteadoH1);
         numeroSorteadoH1.innerText = vetor[j];
+
+        //colocar verificador com as cartelas, para assim marcar os números até que alguma cartela ganhe.
     }
     document.querySelector("#jogar").onclick = function() {jogoIniciado()};
 }
