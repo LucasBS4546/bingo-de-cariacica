@@ -142,6 +142,15 @@ function sortearNumero(quantidade, min, max) {
 
     var numeroJogadores = jogadores.length
 
+
+    /* 
+    Primeiro loop: seleciona cada cartela de cada jogador
+    Segundo loop: seleciona cada coluna da cartela
+    Terceiro loop: seleciona cada número da cartela
+
+    O que fazer: tentar fazer com que sempre que um número seja sorteado (var numeroSorteado) ele seja comparado a esses valores extraidos no terceiro loop.
+
+    */
     for(i=0; i<=numeroJogadores; i++){
 
         var cartelaGeral = jogadores[i].cartela;
