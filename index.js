@@ -122,6 +122,8 @@ function jogoIniciado() {
 
 }
 
+//  ESTOU AQUI
+//      V
 function sortearNumero(quantidade, min, max) {
 
     if(quantidade > (max - min)){ 
