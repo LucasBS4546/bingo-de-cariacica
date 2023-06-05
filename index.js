@@ -108,15 +108,45 @@ function reiniciarJogo() {
     location.reload();
 }
 
-function jogar() {
-    var divSorteio = document.getElementById('divSorteio');
-    divSorteio = document.createElement('div');
-    divSorteio.id = 'divSorteio';
-    var numeroSorteadoH1 = document.getElementById('numeroSorteadoH1');
-    numeroSorteadoH1 = document.createElement('h1');
-    numeroSorteadoH1.id = 'numeroSorteadoH1';
-    var section = document.getElementById('sorteados');
-    section.appendChild(divSorteio);
-    divSorteio.appendChild(numeroSorteadoH1);
+function sortearNumeros() {
+    var vetorInicial = gerarVetorInicial();
+    var numerosSorteados = [];
+
+    while(numerosSorteados.length < 75) {
+        var indice = Math.floor(Math.random()*vetorInicial.length);
+        numerosSorteados.push(vetorInicial[indice]);
+        vetorInicial.splice(indice, 1);
+    }
+    return numerosSorteados;
 }
+
+function jogoIniciado() {
+    var avisoJogoIniciado = document.getElementById('avisoJogoIniciado');
+    avisoJogoIniciado = document.createElement('h3');
+    avisoJogoIniciado.id = 'avisoJogoIniciado';
+    var section = document.querySelector("#interface2");
+    section.appendChild(avisoJogoIniciado);
+    avisoJogoIniciado.innerText = 'O jogo já foi realizado! Para realizar outro jogo, clique em "reiniciar jogo"!'
+}
+
+function jogar() {
+    vetor = sortearNumeros();
+    console.log(vetor);
+
+    for (var j = 0; j<=74; j++) {
+        var divSorteio = document.getElementById('divSorteio');
+        divSorteio = document.createElement('div');
+        divSorteio.id = 'divSorteio';
+        var numeroSorteadoH1 = document.getElementById('numeroSorteadoH1');
+        numeroSorteadoH1 = document.createElement('h1');
+        numeroSorteadoH1.id = 'numeroSorteadoH1';
+        var section = document.getElementById('sorteados');
+        section.appendChild(divSorteio);
+        divSorteio.appendChild(numeroSorteadoH1);
+        numeroSorteadoH1.innerText = vetor[j];
+    }
+    document.querySelector("#jogar").onclick = function() {jogoIniciado()};
+}
+
+
 
