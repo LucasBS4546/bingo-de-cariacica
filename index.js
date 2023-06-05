@@ -1,3 +1,7 @@
+function off() {
+
+}
+
 function gerarVetorInicial() {
     var vetor = [];
     for(var i = 1; i<=75; i++) {
@@ -98,6 +102,8 @@ function criarCartela() {
             linha5.insertCell(2).innerText = cartelaGerada[21];
             linha5.insertCell(3).innerText = cartelaGerada[22];
             linha5.insertCell(4).innerText = cartelaGerada[23];
+
+            document.querySelector("#jogar").onclick = function() {jogar()};
         }
 
     }
@@ -127,7 +133,19 @@ function jogoIniciado() {
     var section = document.querySelector("#interface2");
     section.appendChild(avisoJogoIniciado);
     avisoJogoIniciado.innerText = 'O jogo já foi realizado! Para realizar outro jogo, clique em "reiniciar jogo"!'
+    document.querySelector("#jogar").onclick = function() {off()};
 }
+
+function jogoIniciado2() {
+    var avisoJogoIniciado2 = document.getElementById('avisoJogoIniciado2');
+    avisoJogoIniciado2 = document.createElement('h3');
+    avisoJogoIniciado2.id = 'avisoJogoIniciado';
+    var section = document.querySelector("#interface1");
+    section.appendChild(avisoJogoIniciado2);
+    avisoJogoIniciado2.innerText = 'O jogo já foi iniciado! Para realizar outro jogo, clique em "reiniciar jogo"!'
+    document.querySelector("#criar").onclick = function() {off()};
+}
+
 
 function jogar() {
     vetor = sortearNumeros();
@@ -144,11 +162,12 @@ function jogar() {
         section.appendChild(divSorteio);
         divSorteio.appendChild(numeroSorteadoH1);
         numeroSorteadoH1.innerText = vetor[j];
-
-        //colocar verificador com as cartelas, para assim marcar os números até que alguma cartela ganhe.
     }
     document.querySelector("#jogar").onclick = function() {jogoIniciado()};
+    document.querySelector("#criar").onclick = function() {jogoIniciado2()};
 }
 
-
+function semCartelas() {
+    alert('Não existem cartelas para jogar! Clique em "Criar cartela" antes de começar!')
+}
 
