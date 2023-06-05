@@ -2,8 +2,7 @@ var jogadores = []
 
 function gerarNumerosAleatorios(quantidade, min, max){
 
-    if(quantidade > (max - min)){
-        console.log("Intervalo insuficiente ...");
+    if(quantidade > (max - min)){ 
         return;
     }
 
@@ -24,6 +23,20 @@ function gerarNumerosAleatorios(quantidade, min, max){
 function criarCartela(){
     var nomeJogador = prompt('Digite o nome do jogador');
 
+    if (nomeJogador == "") {
+        alert('Nomes vazios não são aceitos! Digite um nome válido!');
+        return
+    }
+
+    if (nomeJogador == null) {
+        return
+    }
+
+    if (nomeJogador.length > 30) {
+        alert('O nome do jogador é longo demais!');
+        return
+    }
+
     var cartela = [gerarNumerosAleatorios(5,1,15), gerarNumerosAleatorios(5,16,30), gerarNumerosAleatorios(5,31,45),gerarNumerosAleatorios(5,46,60), gerarNumerosAleatorios(5,61,75)]
 
     jogadores.push({
@@ -38,6 +51,7 @@ function criarCartela(){
 
 function reiniciarJogo(){
     jogadores = []
+    location.reload();
 }
 
 function desenharCartela(nomeJogador, cartela){
