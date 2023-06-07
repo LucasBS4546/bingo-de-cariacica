@@ -122,58 +122,6 @@ function jogoIniciado() {
 
 }
 
-//  ESTOU AQUI
-//      V
-function sortearNumero(quantidade, min, max) {
-
-    if(quantidade > (max - min)){ 
-        return;
-    }
-
-    var numeroSorteado = [];
-
-    while(numeroSorteado.length < quantidade){
-        var aleatorio = Math.floor(Math.random()*(max - min) + min);
-        
-        if(!numeroSorteado.includes(aleatorio)){
-            numeroSorteado.push(aleatorio);
-        }
-    }
-
-    var numeroJogadores = jogadores.length
-
-
-    /* 
-    Primeiro loop: seleciona cada cartela de cada jogador
-    Segundo loop: seleciona cada coluna da cartela
-    Terceiro loop: seleciona cada número da cartela
-
-    O que fazer: tentar fazer com que sempre que um número seja sorteado (var numeroSorteado) ele seja comparado a esses valores extraidos no terceiro loop.
-
-    */
-    for(i=0; i<=numeroJogadores; i++){
-
-        var cartelaGeral = jogadores[i].cartela;
-
-        for(j=0; j<5; j++){
-
-            cartelaMenor = cartelaGeral[j]
-            
-            for(k=0; k<5; k++){
-                console.log(cartelaMenor[k]);
-            }
-            
-        }
-
-    }
-    
-
-
-
-
-
-}
-
 function jogar() {
 
     if (jogadores.length < 2) {
@@ -181,8 +129,46 @@ function jogar() {
         return
     }
 
-    sortearNumero(74,1,75)
+    var numeros_sorteados = [];
+
+    var intervalo = setInterval(function() {
+        while(true){
+            aleatorio =  Math.floor(Math.random()*75 + 1);
+            if(!numeros_sorteados.includes(aleatorio)) {
+                numeros_sorteados.push(aleatorio);
+                var section_sorteados = document.getElementById('sorteados');
+                var divSorteado = document.createElement('div');
+                divSorteado.id = 'divSorteio';
+                divSorteado.innerText = aleatorio;
+                section_sorteados.appendChild(divSorteado);
+                break;
+            }
+
+            if(verificarGanhador(numeros_sorteados)) {
+                break;
+            }
+        }
+        console.log(numeros_sorteados)
+
+    },1000);
 
 
     document.querySelector("#jogar").onclick = function() {jogoIniciado()};
+}
+
+function verificarGanhador() {
+    jogadores.forEach(function(jogador){
+        var quantidade = 0;
+        for(var i=0; i < jogador.cartela.length; i++) {
+            for(var j=0; j<numeros_sorteados.length; j++) {
+                if (jogador.cartela[i] == numeros_sorteados[j]){
+                    quantidade++;
+                }
+            }
+        }
+        if(quantidade == 24) {
+            return true;
+        }
+    }) 
+
 }
