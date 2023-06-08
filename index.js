@@ -1,3 +1,47 @@
+
+function dialogoUm() {
+
+    var iFala = 0;
+    var txt = 'Bom dia, colega. Imagino que você seja a cobaia que a Sra. Pauling enviou, não é? Você vai poder testar minha mais nova invenção, um bingo!'; 
+    var velocidade = 20; 
+
+    function typeWriter() {
+        if (iFala < txt.length) {
+        document.getElementById("falaEngie").innerHTML += txt.charAt(iFala);
+        iFala++;
+        setTimeout(typeWriter, velocidade);
+        }
+    }
+    typeWriter();
+    
+}
+
+function comoJogar() {
+    var iFala = 0;
+    var txt = 'Apenas aperte o botão "Criar cartela" para cada jogador que vai participar e então aperte "jogar" para sortear os números!'; 
+    var velocidade = 20; 
+    document.getElementById("falaEngie").innerText = "";
+
+    function typeWriter() {
+        if (iFala < txt.length) {
+        document.getElementById("falaEngie").innerHTML += txt.charAt(iFala);
+        iFala++;
+        setTimeout(typeWriter, velocidade);
+        }
+    }
+
+    typeWriter();
+    
+}
+
+
+
+window.onload = function() {
+    dialogoUm();
+};
+
+
+
 var jogadores = []
 
 var JogoEmAndamento = 0;
@@ -34,7 +78,7 @@ function criarCartela(){
         return
     }
 
-    if (nomeJogador.length > 30) {
+    if (nomeJogador.length > 26) {
         alert('O nome do jogador é longo demais!');
         return
     }
