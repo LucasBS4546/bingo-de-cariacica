@@ -2,7 +2,7 @@
 function dialogoUm() {
 
     var iFala = 0;
-    var txt = 'Bom dia, colega. Imagino que você seja a cobaia que a Sra. Pauling enviou, não é? Você vai poder testar minha mais nova invenção, um bingo!'; 
+    var txt = 'Bom dia, colega. Imagino que você seja o cara que a Sra. Pauling enviou, não é? Você vai poder testar minha mais nova invenção, um bingo!'; 
     var velocidade = 20; 
 
     function typeWriter() {
@@ -36,7 +36,7 @@ function comoJogar() {
 
 function quemVoce() {
     var iFala = 0;
-    var txt = 'Apenas aperte o botão "Criar cartela" para cada jogador que vai participar e então aperte "jogar" para sortear os números!'; 
+    var txt = 'Eu sou Dell Conagher, o engenheiro! Estou trabalhando para a Reliable Excavation Demolition para tentar superar a Builders League United.' 
     var velocidade = 20; 
     document.getElementById("falaEngie").innerText = "";
 
