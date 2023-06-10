@@ -206,30 +206,34 @@ function jogar() {
             }
 
             if(verificarGanhador(numeros_sorteados)) {
+                console.log('OLAOLAOLAOLA')
                 break;
             }
         }
         console.log(numeros_sorteados)
 
     },1000);
+    
+
+    function verificarGanhador() {
+        jogadores.forEach(function(jogador){
+            var quantidade = 0;
+            for(var i=0; i < jogador.cartela.length; i++) {
+                for(var j=0; j<numeros_sorteados.length; j++) {
+                    if (jogador.cartela[i] == numeros_sorteados[j]){
+                        quantidade++;
+                    }
+                }
+            }
+            if(quantidade == 24) {
+                return true;
+            }
+        }) 
+    
+    }
 
 
     document.querySelector("#jogar").onclick = function() {jogoIniciado()};
 }
 
-function verificarGanhador() {
-    jogadores.forEach(function(jogador){
-        var quantidade = 0;
-        for(var i=0; i < jogador.cartela.length; i++) {
-            for(var j=0; j<numeros_sorteados.length; j++) {
-                if (jogador.cartela[i] == numeros_sorteados[j]){
-                    quantidade++;
-                }
-            }
-        }
-        if(quantidade == 24) {
-            return true;
-        }
-    }) 
 
-}
