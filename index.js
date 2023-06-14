@@ -61,6 +61,8 @@ window.onload = function() {
 
 var jogadores = []
 
+var numeros_sorteados = [];
+
 var JogoEmAndamento = 0;
 
 function gerarNumerosAleatorios(quantidade, min, max){
@@ -190,8 +192,6 @@ function jogar() {
         return
     }
 
-    var numeros_sorteados = [];
-
     var intervalo = setInterval(function() {
         while(true){
             aleatorio =  Math.floor(Math.random()*75 + 1);
@@ -216,21 +216,29 @@ function jogar() {
     
 
     function verificarGanhador() {
-        jogadores.forEach(function(jogador){
-            var quantidade = 0;
-            for(var i=0; i < jogador.cartela.length; i++) {
-                for(var j=0; j<numeros_sorteados.length; j++) {
-                    if (jogador.cartela[i] == numeros_sorteados[j]){
-                        quantidade++;
+
+    var ganhadores = []
+
+    if(numeros_sorteados.length < 25) {
+        return [];
+    }
+
+    jogadores.forEach(function(jogador){
+        var ganhou = true;
+        for(var i=0; i<5; i++){
+            for(var j=0; j<5; j++){
+                for(var z=0; z<numeros_sorteados.length; z++) {
+                    if(numeros_sorteados[z] != jogador.cartela[i][j]) {
+                        ganhou = false;
+                        break;
                     }
                 }
             }
-            if(quantidade == 24) {
-                return true;
-            }
-        }) 
-    
-    }
+        }
+        ganhadores.push(jogador);
+    })
+    return ganhadores;
+}
 
 
     document.querySelector("#jogar").onclick = function() {jogoIniciado()};
