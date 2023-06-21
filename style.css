@@ -119,13 +119,17 @@ table {
     margin-bottom: 10vh;
 }
 
-#divCartela {
+.divCartela {
     width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     margin-block: 5%;
+}
+
+.celulaComX {
+    background-color: green;
 }
 
 #nomeCartela {
@@ -162,14 +166,13 @@ table {
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
     width: 100vw;
     background-color: lightgray;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 5vh;
+    font-size: 25px;
 }
 
 #engineer {

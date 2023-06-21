@@ -1,13 +1,22 @@
+// Código para os diálogos
+
+var secaoFala = document.getElementById('caixaDeFala');
 
 function dialogoUm() {
 
+    secaoFala.removeChild(secaoFala.firstChild);
+
+    var elementoTextoP = document.createElement('p');
+    elementoTextoP.id = 'falaEngie';
     var iFala = 0;
     var txt = 'Bom dia, colega. Imagino que você seja o cara que a Sra. Pauling enviou, não é? Você vai poder testar minha mais nova invenção, um bingo!'; 
     var velocidade = 20; 
 
+    secaoFala.appendChild(elementoTextoP);
+
     function typeWriter() {
         if (iFala < txt.length) {
-        document.getElementById("falaEngie").innerHTML += txt.charAt(iFala);
+        elementoTextoP.innerHTML += txt.charAt(iFala);
         iFala++;
         setTimeout(typeWriter, velocidade);
         }
@@ -17,14 +26,19 @@ function dialogoUm() {
 }
 
 function comoJogar() {
+    secaoFala.removeChild(secaoFala.firstChild);
+
+    var elementoTextoP = document.createElement('p');
+    elementoTextoP.id = 'falaEngie';
     var iFala = 0;
     var txt = 'Apenas aperte o botão "Criar cartela" para cada jogador que vai participar e então aperte "jogar" para sortear os números!'; 
     var velocidade = 20; 
-    document.getElementById("falaEngie").innerText = "";
+
+    secaoFala.appendChild(elementoTextoP);
 
     function typeWriter() {
         if (iFala < txt.length) {
-        document.getElementById("falaEngie").innerHTML += txt.charAt(iFala);
+        elementoTextoP.innerHTML += txt.charAt(iFala);
         iFala++;
         setTimeout(typeWriter, velocidade);
         }
@@ -35,14 +49,20 @@ function comoJogar() {
 }
 
 function quemVoce() {
+
+    secaoFala.removeChild(secaoFala.firstChild);
+
+    var elementoTextoP = document.createElement('p');
+    elementoTextoP.id = 'falaEngie';
     var iFala = 0;
-    var txt = 'Eu sou Dell Conagher, o engenheiro! Estou trabalhando para a Reliable Excavation Demolition para tentar superar a Builders League United.' 
+    var txt = 'Eu sou Dell Conagher, o engenheiro! Estou trabalhando para a Reliable Excavation Demolition - esse bingo é um projeto requisitado por Redmond Mann em pessoa!' 
     var velocidade = 20; 
-    document.getElementById("falaEngie").innerText = "";
+
+    secaoFala.appendChild(elementoTextoP);
 
     function typeWriter() {
         if (iFala < txt.length) {
-        document.getElementById("falaEngie").innerHTML += txt.charAt(iFala);
+        elementoTextoP.innerHTML += txt.charAt(iFala);
         iFala++;
         setTimeout(typeWriter, velocidade);
         }
@@ -52,40 +72,61 @@ function quemVoce() {
     
 }
 
-
 window.onload = function() {
     dialogoUm();
 };
 
 
 
-var jogadores = []
 
-var numeros_sorteados = [];
+
+
+// Código do bingo em si 
+
+var jogadores = []
+var numeros_sorteados = []
 
 var JogoEmAndamento = 0;
 
-function gerarNumerosAleatorios(quantidade, min, max){
+function reiniciarJogo(){
+    location.reload();
+}
 
-    if(quantidade > (max - min)){ 
+function gerarNumerosAleatorios(quantidade, min, max) {
+    
+    if (quantidade > max - min) {
         return;
     }
 
     var numeros = [];
 
-    while(numeros.length < quantidade){
-        var aleatorio = Math.floor(Math.random()*(max - min) + min);
-        
-        if(!numeros.includes(aleatorio)){
+    while (numeros.length < quantidade) {
+        var aleatorio = Math.floor(Math.random() * (max - min) + min);
+
+        if (!numeros.includes(aleatorio)) {
             numeros.push(aleatorio);
         }
     }
 
     return numeros;
-
 }
 
+
+function gerarVetorCartela() {
+    var cartela = [
+        gerarNumerosAleatorios(5, 1, 15),
+        gerarNumerosAleatorios(5, 16, 30),
+        gerarNumerosAleatorios(5, 31, 45),
+        gerarNumerosAleatorios(5, 46, 60),
+        gerarNumerosAleatorios(5, 61, 75),
+    ];
+
+    return cartela;
+}
+
+
 function criarCartela(){
+    
     var nomeJogador = prompt('Digite o nome do jogador');
 
     if (nomeJogador == "") {
@@ -102,30 +143,41 @@ function criarCartela(){
         return
     }
 
-    var cartela = [gerarNumerosAleatorios(5,1,15), gerarNumerosAleatorios(5,16,30), gerarNumerosAleatorios(5,31,45),gerarNumerosAleatorios(5,46,60), gerarNumerosAleatorios(5,61,75)]
+
+
+    var cartela = gerarVetorCartela(); 
 
     jogadores.push({
         nomeJogador: nomeJogador,
         cartela: cartela
     });
 
-    desenharCartela(nomeJogador, cartela);
+    carregarJogadores();
+    
 
 }
 
-function reiniciarJogo(){
-    location.reload();
+
+function carregarJogadores() {
+    limparTabelas();
+    for (let jogador of jogadores) {
+        if (!document.getElementById(jogador.nomeJogador)) {
+            desenharCartela(jogador);
+        }
+    }
 }
 
-function desenharCartela(nomeJogador, cartela){
+
+function desenharCartela(jogador){
     var section = document.getElementById('cartelas');
 
     var divCartela = document.createElement('div');
-    divCartela.id = 'divCartela';
+    divCartela.id = jogador.nomeJogador;
+    divCartela.className = 'divCartela';
     
     var nomeJogadorH1 = document.createElement('h3');
     nomeJogadorH1.id = 'nomeCartela';
-    nomeJogadorH1.innerText = nomeJogador;
+    nomeJogadorH1.innerText = jogador.nomeJogador;
     
     var tabela = document.createElement('table');
 
@@ -156,8 +208,12 @@ function desenharCartela(nomeJogador, cartela){
             if(i == 2 && j == 2){
                 td.innerText = "X";
                 tr.appendChild(td);
+                td.id = jogador.nomeJogador + j + i;
+                td.className = 'celulaComX';
             }else{
-                td.innerText = cartela[j][i]
+                var numeroTD = jogador.cartela[j][i];
+                td.innerText = numeroTD;
+                td.id = jogador.nomeJogador + j + i;
                 tr.appendChild(td);
             }
         }
@@ -168,6 +224,8 @@ function desenharCartela(nomeJogador, cartela){
     divCartela.appendChild(tabela);
     tabela.appendChild(thead);
 }
+
+
 
 function jogoIniciado() {
 
@@ -185,63 +243,127 @@ function jogoIniciado() {
 
 }
 
-function jogar() {
-
-    if (jogadores.length < 2) {
-        alert('Deve-se ter pelo menos 2 jogadores para jogar!')
-        return
+function sortearNumero(numeros_sorteados) {
+    var numero = Math.floor(Math.random() * 75) + 1;
+    if (numeros_sorteados.includes(numero)) {
+        return sortearNumero(numeros_sorteados);
     }
+    if (numero !== null) {
+        numeros_sorteados.push(numero);
+    }
+    return numero;
+}
 
-    var intervalo = setInterval(function() {
-        while(true){
-            aleatorio =  Math.floor(Math.random()*75 + 1);
-            if(!numeros_sorteados.includes(aleatorio)) {
-                numeros_sorteados.push(aleatorio);
-                var section_sorteados = document.getElementById('sorteados');
-                var divSorteado = document.createElement('div');
-                divSorteado.id = 'divSorteio';
-                divSorteado.innerText = aleatorio;
-                section_sorteados.appendChild(divSorteado);
-                break;
-            }
+var intervalId;
 
-            if(verificarGanhador(numeros_sorteados)) {
-                console.log('OLAOLAOLAOLA')
-                break;
-            }
-        }
-        console.log(numeros_sorteados)
-
-    },1000);
+function criarElementoSorteio() {
+    var div = document.createElement("div");
+    div.id = "divSorteio";
+    var p = document.createElement("p");
+    p.id = "numeros_sorteados";
     
+    var section = document.getElementById("sorteados");
+    section.appendChild(div);
+    div.appendChild(p);
 
-    function verificarGanhador() {
+    return p;
+}
 
-    var ganhadores = []
+function atualizarNumeroSorteado(p, numero) {
+    p.textContent = numero;
+}
 
-    if(numeros_sorteados.length < 25) {
-        return [];
+function limparNumerosSorteados() {
+    var section = document.getElementById("sorteados");
+    while (section.firstChild) {
+        section.removeChild(section.firstChild);
     }
+}
 
-    jogadores.forEach(function(jogador){
+function limparTabelas() {
+    var caixa = document.querySelectorAll("#caixa div");
+
+    Array.from(caixa).forEach(function (elemento) {
+        elemento.remove();
+    });
+}
+
+
+
+function verificarGanhador() {
+    for (let jogador of jogadores) {
         var ganhou = true;
-        for(var i=0; i<5; i++){
-            for(var j=0; j<5; j++){
-                for(var z=0; z<numeros_sorteados.length; z++) {
-                    if(numeros_sorteados[z] != jogador.cartela[i][j]) {
-                        ganhou = false;
-                        break;
-                    }
+        for (let i = 0; i < 5; i++) {
+            var linha = jogador.cartela[i];
+            for (let j = 0; j < 5; j++) {
+                if (!numeros_sorteados.includes(linha[j])) {
+                    ganhou = false;
                 }
             }
         }
-        ganhadores.push(jogador);
-    })
-    return ganhadores;
+        if (ganhou) {
+            alert(`"${jogador.nomeJogador}" ganhou o bingo!`)
+            clearInterval(intervalId);
+        }
+    }
 }
 
+function jogar() {
+    if (jogadores.length < 2) {
 
-    document.querySelector("#jogar").onclick = function() {jogoIniciado()};
+        alert('Crie pelo menos duas cartelas para jogar!');
+        return
+        
+    } else {
+        
+        limparNumerosSorteados();
+        numeros_sorteados = [];
+    
+        if (intervalId) {
+            clearInterval(intervalId);
+        }
+    
+        intervalId = setInterval(function () {
+            limparNumerosSorteados();
+            limparTabelas();
+            
+            if(jogadores.length < 1) {
+                return clearInterval(intervalId);
+            }
+    
+            var numeroIndividual = sortearNumero(numeros_sorteados);
+    
+            for (let numero of numeros_sorteados) {
+                let p = criarElementoSorteio();
+                atualizarNumeroSorteado(p, numero);
+                for (let jogador of jogadores) {
+                    for(var i = 0; i < 5; i++){
+                        for(var j = 0; j < 5; j++){
+                            if(i == 2 && j == 2){
+    
+                                console.log('Célula com X. Ignorando..')
+    
+                            }else{
+    
+                                if (numero == jogador.cartela[j][i]) {
+                                    td = document.getElementById(jogador.nomeJogador + j + i)
+                                    td.style.backgroundColor = "green";
+                                }
+    
+                            }
+                            
+                        }
+                    }
+                }
+            }
+            carregarJogadores()
+            if (numeros_sorteados.length === 75) {
+                return clearInterval(intervalId);
+            }
+            verificarGanhador();
+            console.log(numeros_sorteados);
+        }, 500);
+
+    }
+
 }
-
-
