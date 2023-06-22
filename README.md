@@ -24,4 +24,4 @@ Aqui estão armazenados os arquivos de **HTML**, **CSS** e **JavaScript** utiliz
 
 <br>
 
-[Github Pages do projeto]([https://www.postgresql.org/](https://github.com/LucasBS4546/bingo-de-cariacica/deployments/activity_log?environment=github-pages)https://github.com/LucasBS4546/bingo-de-cariacica/deployments/activity_log?environment=github-pages)
+[Github Pages do projeto](https://lucasbs4546.github.io/bingo-de-cariacica/)
