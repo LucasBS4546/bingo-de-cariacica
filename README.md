@@ -1,4 +1,4 @@
-## bingo de cariac
+## bingo de cariaca
 # PROJETO DE BINGO - DESENVOLVIMENTO WEB 2023/1
 
 <br>
