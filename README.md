@@ -21,3 +21,7 @@ Aqui estão armazenados os arquivos de **HTML**, **CSS** e **JavaScript** utiliz
 * **'style.css'**: Arquivo contendo toda a estilização da página do bingo.
 
 * **'index.js'**: Arquivo contendo todo o código JavaSript que é utilizado na página do bingo.
+
+<br>
+
+[Github Pages do projeto]([https://www.postgresql.org/](https://github.com/LucasBS4546/bingo-de-cariacica/deployments/activity_log?environment=github-pages)https://github.com/LucasBS4546/bingo-de-cariacica/deployments/activity_log?environment=github-pages)
