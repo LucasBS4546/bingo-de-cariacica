@@ -72,6 +72,50 @@ function quemVoce() {
     
 }
 
+function dialogoJogoIniciado() {
+
+    secaoFala.removeChild(secaoFala.firstChild);
+
+    var elementoTextoP = document.createElement('p');
+    elementoTextoP.id = 'falaEngie';
+    var iFala = 0;
+    var txt = 'Calma ai colega, você só pode sortear uma vez por jogo. Se quiser jogar novamente, aperte "reiniciar jogo"!'; 
+    var velocidade = 20; 
+
+    secaoFala.appendChild(elementoTextoP);
+
+    function typeWriter() {
+        if (iFala < txt.length) {
+        elementoTextoP.innerHTML += txt.charAt(iFala);
+        iFala++;
+        setTimeout(typeWriter, velocidade);
+        }
+    }
+    typeWriter();
+    
+}
+
+function dialogoVencedor(nomeDoVencedor) {
+    secaoFala.removeChild(secaoFala.firstChild);
+
+    var elementoTextoP = document.createElement('p');
+    elementoTextoP.id = 'falaEngie';
+    var iFala = 0;
+    var txt = 'Parabens, ' + nomeDoVencedor + '! Parece que meu projeto está funcionando. Redmond ficará satisfeito. Obrigado por jogar!'; 
+    var velocidade = 20; 
+
+    secaoFala.appendChild(elementoTextoP);
+
+    function typeWriter() {
+        if (iFala < txt.length) {
+        elementoTextoP.innerHTML += txt.charAt(iFala);
+        iFala++;
+        setTimeout(typeWriter, velocidade);
+        }
+    }
+    typeWriter();
+}
+
 window.onload = function() {
     dialogoUm();
 };
@@ -304,6 +348,8 @@ function verificarGanhador() {
         if (ganhou) {
             alert(`"${jogador.nomeJogador}" ganhou o bingo!`)
             clearInterval(intervalId);
+
+            dialogoVencedor(`${jogador.nomeJogador}`)
         }
     }
 }
@@ -347,7 +393,7 @@ function jogar() {
     
                                 if (numero == jogador.cartela[j][i]) {
                                     td = document.getElementById(jogador.nomeJogador + j + i)
-                                    td.style.backgroundColor = "green";
+                                    td.style.backgroundColor = "lightblue";
                                 }
     
                             }
@@ -364,6 +410,8 @@ function jogar() {
             console.log(numeros_sorteados);
         }, 500);
 
+        document.querySelector("#jogar").onclick = function() {dialogoJogoIniciado()};
     }
 
 }
+
